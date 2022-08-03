@@ -45,7 +45,8 @@ This is a repository for blog site created using SpringBoot for backend
   ```
 
 - Configure the Application.properties file.
-  in the place of USERNAME and PASSWORD, put your database username and password
+
+  *in the place of* **USERNAME** *and* **PASSWORD** *, put your database username and password*
   ```properties
   spring.datasource.username=${USERNAME} 
   spring.datasource.password=${PASSWORD}
