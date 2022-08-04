@@ -5,9 +5,20 @@
 This is a repository for blog site created using SpringBoot for backend
 
 ## Prerequisites
+
 - Maven Dependencies for pom.xml<br/>
   ```xml
-    <dependencies>
+        <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -18,28 +29,73 @@ This is a repository for blog site created using SpringBoot for backend
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.4</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <scope>runtime</scope>
+            <version>0.10.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <scope>runtime</scope>
+            <version>0.10.5</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
   ```
-  
- - Application.properties
+
+- Application.properties
+
  ```properties
     spring.datasource.url=jdbc:mysql://localhost:3306/blog  
     spring.datasource.username=${USERNAME} // instead of ${USERNAME} you may use a generic one as well, like 'root' but then it will be pushed to github with the app so anyone can see you username and password.
     spring.datasource.password=${PASSWORD}
-    spring.jpa.hibernate.ddl-auto=create-drop //running after the first time (when the tables are created in the database) or later when you want the data remain for later tests you have to change the key word 'create-drop' to 'update' so that the data remains in place. Oops! the database itself without the tables needs to be created manually first.
-    spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
-    spring.logging.level.org.hibernate.SQL=debug
+    spring.jpa.hibernate.ddl-auto=update
     spring.jpa.show-sql=true
+    spring.jpa.properties.hibernate.format_sql=true
+    server.error.include-message=always
  ```
 
 ## Running the Application
 
-- Clone the repository to your local device. 
+- Clone the repository to your local device.
   ```git
   git clone https://github.com/sthsuyash/Blog-Site.git
   ```
@@ -51,18 +107,18 @@ This is a repository for blog site created using SpringBoot for backend
   spring.datasource.username=${USERNAME} 
   spring.datasource.password=${PASSWORD}
   ```
-  
+
 - Run the Application using IntelliJ IDEA or STS.
   ```mvn
   mvn clean package  
   ```
-  
+
   ```mvn
   ./mvnw spring-boot:run
   ```
-  
 
 ## License
+
 Copyright (c) 2012-2022 Scott Chacon and others
 
 Permission is hereby granted, free of charge, to any person obtaining
@@ -87,4 +143,5 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 [Comment]: <> (## Citation)
 
 ## Contact
+
 - sthasuyash11@gmail.com

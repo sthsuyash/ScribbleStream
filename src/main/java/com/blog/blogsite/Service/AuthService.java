@@ -5,27 +5,39 @@ import com.blog.blogsite.Model.User;
 import com.blog.blogsite.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+import java.util.Optional;
+
+@Service
 public class AuthService {
 
     @Autowired
-    private UserRepository _userRepository;
+    private final UserRepository _userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public AuthService(UserRepository userRepository) {
+        _userRepository = userRepository;
+    }
+
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
 
-        // setting the required contents
-        user.setUsername(registerRequest.getUsername());
-        user.setEmail(registerRequest.getEmail());
-        user.setPassword(encodePassword(registerRequest.getPassword()));
+        Optional<Object> userOptional = _userRepository.findByUsername(user.getUsername());
 
-        // save it to database
-        _userRepository.save(user);
+        if (userOptional.isPresent()) {
+            throw new IllegalStateException("Username taken!!");
+        } else {
+            // setting the required contents
+            user.setUsername(registerRequest.getUsername());
+            user.setEmail(registerRequest.getEmail());
+            user.setPassword(encodePassword(registerRequest.getPassword()));
+
+            // save it to database
+            _userRepository.save(user);
+        }
     }
 
     private String encodePassword(String password) {
