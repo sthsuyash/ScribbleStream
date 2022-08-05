@@ -25,6 +25,9 @@ public class AuthService {
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
 
+        // to be implemented
+        // username must not be duplicate
+
         Optional<Object> userOptional = _userRepository.findByUsername(user.getUsername());
 
         if (userOptional.isPresent()) {

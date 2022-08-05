@@ -5,6 +5,7 @@ import com.blog.blogsite.Model.User;
 import com.blog.blogsite.Repository.UserRepository;
 import com.blog.blogsite.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,20 +31,24 @@ public class UserController {
     // get specific user by username
     @GetMapping("/{username}")
     public Optional<Object> getUser(@PathVariable String username) {
-        return _userService.getByUsername(username);
+        Optional<Object> userOptional = (Optional<Object>) _userService.getByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
+        return userOptional;
     }
 
     // get specific user by id
     @GetMapping("/id/{id}")
     public Optional<User> getById(@PathVariable Long id) {
-        return _userService.getById(id);
+        Optional<User> user = Optional.ofNullable(_userService.getById(id)
+                .orElseThrow((() -> new ResourceNotFoundException("User not found with id: " + id))));
+        return user;
     }
 
     @Autowired
     private UserRepository _userRepository;
 
     // edit by id
-    @PutMapping("/{id}")
+    @PutMapping("/id/{id}")
     public ResponseEntity updateEmployee(@PathVariable Long id, @RequestBody User userToEdit) {
         User user = _userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee doesn't exist with id: " + id + "."));
@@ -53,15 +58,15 @@ public class UserController {
         user.setEmail(userToEdit.getEmail());
 
         User updatedEmployee = _userRepository.save(user);
-        return ResponseEntity.ok(updatedEmployee);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     // delete specific user by id
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/id/{id}")
+    public ResponseEntity deleteUser(@PathVariable Long id) {
+        User userOptional = _userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
         _userService.deleteUser(id);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return ResponseEntity.ok(response);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 }
