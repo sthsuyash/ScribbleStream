@@ -57,7 +57,7 @@ public class UserController {
         user.setPassword(userToEdit.getPassword());
         user.setEmail(userToEdit.getEmail());
 
-        User updatedEmployee = _userRepository.save(user);
+        _userRepository.save(user);
         return new ResponseEntity(HttpStatus.OK);
     }
 
