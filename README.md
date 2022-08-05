@@ -2,7 +2,15 @@
 
 ## Description
 
-This is a repository for blog site created using SpringBoot for backend
+A simple web application for blog site created using SpringBoot for backend as Maven project which integrates MySQL for database connection and React.js for frontend.
+
+People can create account to add blogs. 
+
+- The app is created following Uncle Bob's clean code philosophy as much as possible.
+- implemented Spring MVC architecture.
+- Spring Security features for login/signup. 
+- Also uses JWT token based authorization feature.
+
 
 ## Prerequisites
 
@@ -83,13 +91,18 @@ This is a repository for blog site created using SpringBoot for backend
 
 - Application.properties
 
- ```properties
+ ```application.properties
+    security.enable.csrf=false
+    spring.main.allow-circular-references=true
+    
     spring.datasource.url=jdbc:mysql://localhost:3306/blog  
     spring.datasource.username=${USERNAME} // instead of ${USERNAME} you may use a generic one as well, like 'root' but then it will be pushed to github with the app so anyone can see you username and password.
     spring.datasource.password=${PASSWORD}
+    
     spring.jpa.hibernate.ddl-auto=update
     spring.jpa.show-sql=true
     spring.jpa.properties.hibernate.format_sql=true
+    
     server.error.include-message=always
  ```
 
@@ -116,6 +129,19 @@ This is a repository for blog site created using SpringBoot for backend
   ```mvn
   ./mvnw spring-boot:run
   ```
+  
+## Contributing
+
+To contribute to this app, 
+
+- First, fork the repository. Now there will be a copy of this repo in your account.
+- Clone the repository in your account and make changes to your local repo
+  ```git
+  git clone ${your_repo_url}
+  ```
+  
+- To add features to the main repository, open Pull Request.
+
 
 ## License
 
