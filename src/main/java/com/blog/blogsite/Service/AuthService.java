@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,12 @@ public class AuthService {
     @Autowired
     private JwtProvider _jwtProvider;
 
+    // default constructor
     public AuthService(UserRepository userRepository) {
         _userRepository = userRepository;
     }
 
+    // user signup handler
     public ResponseEntity signup(RegisterRequest registerRequest) {
         User user = new User();
 
@@ -57,10 +60,12 @@ public class AuthService {
         }
     }
 
+    // encode the password
     private String encodePassword(String password) {
         return passwordEncoder.encode(password);
     }
 
+    // login user handler
     public String login(LoginRequest loginRequest) {
         Authentication authenticate = _authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -72,4 +77,8 @@ public class AuthService {
         return _jwtProvider.generateJwtToken(authenticate);
     }
 
+    public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return Optional.of(principal);
+    }
 }

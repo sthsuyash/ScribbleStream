@@ -33,8 +33,8 @@ public class Post {
     @NotBlank
     private String username; // Name of author of BlogPost
 
-    @Column
-    private Long views; // Number of views of BlogPost
+//    @Column
+//    private Long views; // Number of views of BlogPost
 
     // getters and setters
     public Long getId() {
@@ -85,11 +85,11 @@ public class Post {
         this.username = username;
     }
 
-    public Long getViews() {
-        return views;
-    }
-
-    public void setViews(Long views) {
-        this.views = views;
-    }
+//    public Long getViews() {
+//        return views;
+//    }
+//
+//    public void setViews(Long views) {
+//        this.views = views;
+//    }
 }
