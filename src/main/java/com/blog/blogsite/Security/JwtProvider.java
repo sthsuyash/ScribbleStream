@@ -21,10 +21,12 @@ public class JwtProvider {
     // create a key only once
     // and reuse it to sign jwt everytime
 
+    // generating at server start
     @PostConstruct
     public void init() {
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
+
 
     public String generateJwtToken(Authentication authentication) {
         User principal = (User) authentication.getPrincipal();
@@ -50,3 +52,14 @@ public class JwtProvider {
         return claims.getSubject();
     }
 }
+
+// assymetric encryption using java keystore
+
+// use java key store that contains public key and private key
+// when generating token, use private key to sign the token
+// and public key to validate the token
+
+// keystore ad =>
+// generate key and store in resouces folder in disk
+// and read public and private key
+// and eliminate inconsistencies with the key.

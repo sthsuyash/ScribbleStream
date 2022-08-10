@@ -80,10 +80,41 @@ public class PostService {
         return postRequest;
     }
 
+    // get post by post id
     public PostRequest getPostById(Long id) {
         Post post = _postRepository.findById(id)
                 .orElseThrow(() ->
                         new PostNotFoundException("No Post found with id: " + id));
-        return mapFromPostToPostRequest(post);
+
+        if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
+            return mapFromPostToPostRequest(post);
+        }
+        return null;
+    }
+
+    // update post by id
+    public void updatePost(Long id, PostRequest postRequest) {
+        Post post = _postRepository.findById(id)
+                .orElseThrow(() ->
+                        new PostNotFoundException("No Post found with id: " + id));
+
+        if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
+            post.setTitle(postRequest.getTitle());
+            post.setContent(postRequest.getContent());
+            post.setUpdatedOn(Instant.now());
+
+            _postRepository.save(post);
+        }
+    }
+
+    // deleting a post by post id
+    public void deletePost(Long id) {
+        Post post = _postRepository.findById(id)
+                .orElseThrow(() ->
+                        new PostNotFoundException("No Post found with id: " + id));
+
+        if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
+            _postRepository.delete(post);
+        }
     }
 }

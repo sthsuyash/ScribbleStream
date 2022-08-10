@@ -1,8 +1,7 @@
 package com.blog.blogsite.Controller;
 
-import com.blog.blogsite.Exception.ResourceNotFoundException;
+import com.blog.blogsite.DTO.RegisterRequest;
 import com.blog.blogsite.Model.User;
-import com.blog.blogsite.Repository.UserRepository;
 import com.blog.blogsite.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,43 +29,25 @@ public class UserController {
 
     // get specific user by username
     @GetMapping("/{username}")
-    public Optional<Object> getUser(@PathVariable String username) {
-        Optional<Object> userOptional = (Optional<Object>) _userService.getByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
-        return userOptional;
+    public ResponseEntity<User> getUser(@PathVariable String username) {
+        return new ResponseEntity<User>(_userService.getByUsername(username), HttpStatus.OK);
     }
 
     // get specific user by id
     @GetMapping("/id/{id}")
-    public Optional<User> getById(@PathVariable Long id) {
-        Optional<User> user = Optional.ofNullable(_userService.getById(id)
-                .orElseThrow((() -> new ResourceNotFoundException("User not found with id: " + id))));
-        return user;
+    public ResponseEntity<User> getById(@PathVariable Long id) {
+        return new ResponseEntity<User>(_userService.getById(id), HttpStatus.OK);
     }
 
-    @Autowired
-    private UserRepository _userRepository;
-
     // edit by id
-    @PutMapping("/id/{id}")
-    public ResponseEntity updateEmployee(@PathVariable Long id, @RequestBody User userToEdit) {
-        User user = _userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee doesn't exist with id: " + id + "."));
-
-        user.setUsername(userToEdit.getUsername());
-        user.setPassword(userToEdit.getPassword());
-        user.setEmail(userToEdit.getEmail());
-
-        _userRepository.save(user);
-        return new ResponseEntity(HttpStatus.OK);
+    @PutMapping("/edit/{id}")
+    public ResponseEntity updateEmployee(@PathVariable Long id, @RequestBody RegisterRequest userToEdit) {
+        return _userService.editById(id, userToEdit);
     }
 
     // delete specific user by id
-    @DeleteMapping("/id/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteUser(@PathVariable Long id) {
-        User userOptional = _userRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + id));
-        _userService.deleteUser(id);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return _userService.deleteUser(id);
     }
 }

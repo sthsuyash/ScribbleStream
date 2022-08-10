@@ -14,7 +14,11 @@ import java.util.List;
 public class PostController {
 
     @Autowired
-    private PostService _postService;
+    private final PostService _postService;
+
+    public PostController(PostService postService) {
+        _postService = postService;
+    }
 
     // creating a new post
     @PostMapping("/create")
@@ -32,12 +36,30 @@ public class PostController {
         return new ResponseEntity<>(_postService.getAllPosts(), HttpStatus.OK);
     }
 
+    // getting all users posts// of the current logged in user
+    @GetMapping("/user")
+    public ResponseEntity<List<PostRequest>> getAllUserPosts() {
+        return new ResponseEntity<>(_postService.getAllUserPosts(), HttpStatus.OK);
+    }
+
     // get specific post by id
     @GetMapping("/{id}")
     public ResponseEntity<PostRequest> getPostById(@PathVariable Long id) {
         return new ResponseEntity<>(_postService.getPostById(id), HttpStatus.OK);
     }
 
-    // updating a post
+    // updating a post by post id
+    @PutMapping("/{id}")
+    public ResponseEntity<PostRequest> updatePost(@PathVariable Long id, @RequestBody PostRequest postRequest) {
+        _postService.updatePost(id, postRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    // deleting a post by post id
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PostRequest> deletePost(@PathVariable Long id) {
+        _postService.deletePost(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
