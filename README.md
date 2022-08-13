@@ -10,7 +10,7 @@ People can create account to add blogs.
 - implemented Spring MVC architecture.
 - Spring Security features for login/signup.
 - Also uses JWT token based authorization feature.
-<br/>
+  <br/>
 
 ## Flowchart of app architecture
 
@@ -20,10 +20,43 @@ People can create account to add blogs.
 ## Use Case Diagram
 
 ![Use Case Diagram](src/main/resources/images/Use_case_diagram_for_blogsite.jpg)
+
 A use case diagram is a graphical depiction of a user's possible interactions with a system. A use case diagram shows various use cases and different types of users the system has and will often be accompanied by other types of diagrams as well. The use cases are represented by either circles or ellipses. The user's interactions with the system are represented by arrows.
 
 A use case diagram doesn't go into a lot of detail—for example, don't expect it to model the order in which steps are performed. Instead, a proper use case diagram depicts a high-level overview of the relationship between use cases, actors, and systems.
 <br/>
+
+## DFD-0 and DFD-1 with ERD & data schema and annotations
+
+- **Database schema** is the structure of a database described in a formal language supported by the database management system.
+
+- **Entity relationship diagram (ERD)**, also known as an entity relationship model, is a graphical representation that depicts relationships among people, objects, places, concepts or events within an information technology (IT) system.
+
+- **Data Flow Diagram (DFD)** provides a visual representation of the flow of information (i.e. data) within a system. By drawing a Data Flow Diagram, you can tell the information provided by and delivered to someone who takes part in system processes, the information needed to complete the processes and the information needed to be stored and accessed.
+
+  - DFD-0 (Context DFD):
+
+    A context diagram is a data flow diagram that only shows the top level, otherwise known as Level 0. At this level, there is only one visible process node that represents the functions of a complete system in regards to how it interacts with external entities.
+
+    Some of the benefits of a Context Diagram are:
+
+    - Shows the overview of the boundaries of a system
+    - No technical knowledge is required to understand with the simple notation
+    - Simple to draw, amend and elaborate as its limited notation.
+      <br/><br/>
+
+  - DFD-1 (System DFD):
+
+    In a level 1 data flow diagram, the single process node from the context diagram is broken down into subprocesses. As these processes are added, the diagram will need additional data flows and data stores to link them together.
+    <br/><br/>
+
+- DFD-0 of blog site is shown in the image below.
+  ![DFD-0]()
+  <br/><br/>
+
+- DFD-0 of blog site is shown in the image below.
+  ![DFD-1]()
+  <br/><br/>
 
 ## Prerequisites
 
@@ -35,98 +68,25 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
 - Node version 10.x
 - NPM version 6.x
 - Git version 2.x
-- Maven Dependencies for pom.xml
-
-  ```xml
-        <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.10.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-impl</artifactId>
-            <scope>runtime</scope>
-            <version>0.10.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-jackson</artifactId>
-            <scope>runtime</scope>
-            <version>0.10.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
-    </dependencies>
-  ```
+- [Maven Dependencies](https://github.com/sthsuyash/Blog-Site/blob/main/pom.xml) for _pom.xml_
 
 - Application.properties
 
- ```application.properties
-    security.enable.csrf=false
-    spring.main.allow-circular-references=true
-    
-    spring.datasource.url=jdbc:mysql://localhost:3306/blog  
-    spring.datasource.username=${USERNAME} // instead of ${USERNAME} you may use a generic one as well, like 'root' but then it will be pushed to github with the app so anyone can see you username and password.
-    spring.datasource.password=${PASSWORD}
-    
-    spring.jpa.hibernate.ddl-auto=update
-    spring.jpa.show-sql=true
-    spring.jpa.properties.hibernate.format_sql=true
-    
-    server.error.include-message=always
- ```
+```application.properties
+   security.enable.csrf=false
+   spring.main.allow-circular-references=true
+
+   spring.datasource.url=jdbc:mysql://localhost:3306/blog
+   spring.datasource.username=${USERNAME} // instead of ${USERNAME} you may use a generic one as well, like 'root' but then it will be pushed to github with the app so anyone can see you username and password.
+   spring.datasource.password=${PASSWORD}
+
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   spring.jpa.properties.hibernate.format_sql=true
+
+   server.error.include-message=always
+```
+
 <br/>
 
 ## Running the Application
@@ -139,24 +99,25 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
 
 - Configure the Application.properties file.
 
-  *in the place of* **USERNAME** *and* **PASSWORD** *, put your database username and password*
+  _in the place of_ **USERNAME** _and_ **PASSWORD** _, put your database username and password_
 
   ```properties
-  spring.datasource.username=${USERNAME} 
+  spring.datasource.username=${USERNAME}
   spring.datasource.password=${PASSWORD}
   ```
 
 - Run the Application using IntelliJ IDEA or STS.
 
   ```mvn
-  mvn clean package  
+  mvn clean package
   ```
 
   ```mvn
   ./mvnw spring-boot:run
   ```
-<br/>
-  
+
+  <br/>
+
 ## Contributing
 
 To contribute to this app
@@ -167,9 +128,9 @@ To contribute to this app
   ```git
   git clone ${your_repo_url}
   ```
-  
+
 - To add features to the main repository, open Pull Request.
-<br/>
+  <br/>
 
 ## License
 
@@ -200,4 +161,3 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ## Contact
 
 - sthasuyash11@gmail.com
-- prashannabdrshrestha711@gmail.com
