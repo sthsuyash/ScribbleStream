@@ -4,17 +4,31 @@
 
 A simple web application for blog site created using SpringBoot for backend as Maven project which integrates MySQL for database connection and React.js for frontend.
 
-People can create account to add blogs. 
+People can create account to add blogs.
 
 - The app is created following Uncle Bob's clean code philosophy as much as possible.
 - implemented Spring MVC architecture.
-- Spring Security features for login/signup. 
+- Spring Security features for login/signup.
 - Also uses JWT token based authorization feature.
+<br/>
 
+## Flowchart of app architecture
+
+![App architecture flowchart](src/main/resources/images/App_flowchart.jpg)
+<br/>
 
 ## Prerequisites
 
-- Maven Dependencies for pom.xml<br/>
+- Java version 8+
+- SpringBoot 2.2.x
+- MySQL 8.0.18
+- Spring version 5.2.x
+- React version 16.8.x
+- Node version 10.x
+- NPM version 6.x
+- Git version 2.x
+- Maven Dependencies for pom.xml
+
   ```xml
         <dependencies>
         <dependency>
@@ -105,10 +119,12 @@ People can create account to add blogs.
     
     server.error.include-message=always
  ```
+<br/>
 
 ## Running the Application
 
 - Clone the repository to your local device.
+
   ```git
   git clone https://github.com/sthsuyash/Blog-Site.git
   ```
@@ -116,12 +132,14 @@ People can create account to add blogs.
 - Configure the Application.properties file.
 
   *in the place of* **USERNAME** *and* **PASSWORD** *, put your database username and password*
+
   ```properties
   spring.datasource.username=${USERNAME} 
   spring.datasource.password=${PASSWORD}
   ```
 
 - Run the Application using IntelliJ IDEA or STS.
+
   ```mvn
   mvn clean package  
   ```
@@ -129,19 +147,21 @@ People can create account to add blogs.
   ```mvn
   ./mvnw spring-boot:run
   ```
+<br/>
   
 ## Contributing
 
-To contribute to this app, 
+To contribute to this app
 
 - First, fork the repository. Now there will be a copy of this repo in your account.
 - Clone the repository in your account and make changes to your local repo
+
   ```git
   git clone ${your_repo_url}
   ```
   
 - To add features to the main repository, open Pull Request.
-
+<br/>
 
 ## License
 
@@ -165,9 +185,11 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+<br/>
 
 [Comment]: <> (## Citation)
 
 ## Contact
 
 - sthasuyash11@gmail.com
+- prashannabdrshrestha711@gmail.com
