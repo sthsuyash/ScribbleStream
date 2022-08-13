@@ -118,7 +118,7 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
     spring.main.allow-circular-references=true
     
     spring.datasource.url=jdbc:mysql://localhost:3306/blog  
-    spring.datasource.username=${USERNAME} // instead of ${USERNAME} you may use a generic one as well, like 'root' but then it will be pushed to github with the app so anyone can see you username and password.
+    spring.datasource.username=${USERNAME}
     spring.datasource.password=${PASSWORD}
     
     spring.jpa.hibernate.ddl-auto=update
