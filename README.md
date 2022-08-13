@@ -19,7 +19,7 @@ People can create account to add blogs.
 
 ## Use Case Diagram
 
-![Use Case Diagram](src\main\resources\images\Use_case_diagram_for_blogsite.jpg)
+![Use Case Diagram](src/main/resources/images/Use_case_diagram_for_blogsite.jpg)
 A use case diagram is a graphical depiction of a user's possible interactions with a system. A use case diagram shows various use cases and different types of users the system has and will often be accompanied by other types of diagrams as well. The use cases are represented by either circles or ellipses. The user's interactions with the system are represented by arrows.
 
 A use case diagram doesn't go into a lot of detail—for example, don't expect it to model the order in which steps are performed. Instead, a proper use case diagram depicts a high-level overview of the relationship between use cases, actors, and systems.
