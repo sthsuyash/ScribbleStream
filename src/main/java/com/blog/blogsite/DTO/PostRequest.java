@@ -5,7 +5,7 @@ public class PostRequest {
     private String content;
     private String title;
     private String username;
-//    private Long views;
+    private Long views;
 
     public Long getId() {
         return id;
@@ -39,11 +39,11 @@ public class PostRequest {
         this.username = username;
     }
 
-//    public Long getViews() {
-//        return views;
-//    }
-//
-//    public void setViews(Long views) {
-//        this.views = views;
-//    }
+    public Long getViews() {
+        return views;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
 }

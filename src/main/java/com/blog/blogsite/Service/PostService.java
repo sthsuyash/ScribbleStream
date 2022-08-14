@@ -28,6 +28,7 @@ public class PostService {
 
         post.setTitle(postRequest.getTitle());
         post.setContent(postRequest.getContent());
+        post.setViews(0L);
 
         User loggedInUser = _authService.getCurrentUser()
                 .orElseThrow(() ->
@@ -76,6 +77,7 @@ public class PostService {
         postRequest.setTitle(post.getTitle());
         postRequest.setContent(post.getContent());
         postRequest.setUsername(post.getUsername());
+        postRequest.setViews(post.getViews());
 
         return postRequest;
     }
@@ -87,6 +89,8 @@ public class PostService {
                         new PostNotFoundException("No Post found with id: " + id));
 
         if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
+            post.setViews(post.getViews() + 1);
+            _postRepository.save(post);
             return mapFromPostToPostRequest(post);
         }
         return null;
@@ -102,6 +106,7 @@ public class PostService {
             post.setTitle(postRequest.getTitle());
             post.setContent(postRequest.getContent());
             post.setUpdatedOn(Instant.now());
+            post.setViews(postRequest.getViews());
 
             _postRepository.save(post);
         }
