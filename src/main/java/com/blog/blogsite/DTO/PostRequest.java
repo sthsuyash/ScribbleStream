@@ -6,23 +6,24 @@ public class PostRequest {
     private String title;
     private String username;
     private Long views;
-    private int wordCount;
-    private String mostUsedWords;
+    private int word_count;
+    private String most_used_words;
 
-    public String getMostUsedWords() {
-        return mostUsedWords;
+
+    public int getWord_count() {
+        return word_count;
     }
 
-    public void setMostUsedWords(String mostUsedWords) {
-        this.mostUsedWords = mostUsedWords;
+    public void setWord_count(int word_count) {
+        this.word_count = word_count;
     }
 
-    public int getWordCount() {
-        return wordCount;
+    public String getMost_used_words() {
+        return most_used_words;
     }
 
-    public void setWordCount(int wordCount) {
-        this.wordCount = wordCount;
+    public void setMost_used_words(String most_used_words) {
+        this.most_used_words = most_used_words;
     }
 
     public Long getId() {

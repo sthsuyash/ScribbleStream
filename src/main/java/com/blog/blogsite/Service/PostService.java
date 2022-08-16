@@ -36,10 +36,10 @@ public class PostService {
 
         post.setUsername(loggedInUser.getUsername()); // retreive from auth service
         post.setCreatedOn(Instant.now());
-        post.setUpdatedOn(Instant.now());
+        post.setUpdated_on(Instant.now());
 
-        post.setWordCount(getTotalWords(postRequest.getContent()));
-        post.setMostUsedWords(getMostUsedWords(postRequest.getContent()));
+        post.setWord_count(getTotalWords(postRequest.getContent()));
+        post.setMost_used_words(getMostUsedWords(postRequest.getContent()));
 
         _postRepository.save(post);
 
@@ -81,6 +81,8 @@ public class PostService {
         postRequest.setContent(post.getContent());
         postRequest.setUsername(post.getUsername());
         postRequest.setViews(post.getViews());
+        postRequest.setMost_used_words(getMostUsedWords(post.getContent()));
+        postRequest.setWord_count(getTotalWords(post.getContent()));
 
         return postRequest;
     }
@@ -108,10 +110,10 @@ public class PostService {
         if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
             post.setTitle(postRequest.getTitle());
             post.setContent(postRequest.getContent());
-            post.setUpdatedOn(Instant.now());
+            post.setUpdated_on(Instant.now());
 
-            post.setWordCount(getTotalWords(postRequest.getContent()));
-            post.setMostUsedWords(getMostUsedWords(postRequest.getContent()));
+            post.setWord_count(getTotalWords(postRequest.getContent()));
+            post.setMost_used_words(getMostUsedWords(postRequest.getContent()));
 
             _postRepository.save(post);
         }

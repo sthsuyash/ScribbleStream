@@ -27,7 +27,7 @@ public class Post {
     private Instant createdOn; // Date of Blog Post creation
 
     @Column
-    private Instant updatedOn; // Date of Blog Post updated
+    private Instant updated_on; // Date of Blog Post updated
 
     @Column
     @NotBlank
@@ -37,26 +37,10 @@ public class Post {
     private Long views; // Number of views of BlogPost
 
     @Column
-    private int wordCount; // Number of words in BlogPost
+    private int word_count; // Number of words in BlogPost
 
     @Column
-    private String mostUsedWords; // Most used words in BlogPost
-
-    public int getWordCount() {
-        return wordCount;
-    }
-
-    public void setWordCount(int wordCount) {
-        this.wordCount = wordCount;
-    }
-
-    public String getMostUsedWords() {
-        return mostUsedWords;
-    }
-
-    public void setMostUsedWords(String mostUsedWords) {
-        this.mostUsedWords = mostUsedWords;
-    }
+    private String most_used_words; // Most used words in BlogPost
 
     // getters and setters
     public Long getId() {
@@ -91,12 +75,12 @@ public class Post {
         this.createdOn = createdOn;
     }
 
-    public Instant getUpdatedOn() {
-        return updatedOn;
+    public Instant getUpdated_on() {
+        return updated_on;
     }
 
-    public void setUpdatedOn(Instant updatedOn) {
-        this.updatedOn = updatedOn;
+    public void setUpdated_on(Instant updated_on) {
+        this.updated_on = updated_on;
     }
 
     public String getUsername() {
@@ -114,4 +98,21 @@ public class Post {
     public void setViews(Long views) {
         this.views = views;
     }
+
+    public int getWord_count() {
+        return word_count;
+    }
+
+    public void setWord_count(int word_count) {
+        this.word_count = word_count;
+    }
+
+    public String getMost_used_words() {
+        return most_used_words;
+    }
+
+    public void setMost_used_words(String most_used_words) {
+        this.most_used_words = most_used_words;
+    }
 }
+
