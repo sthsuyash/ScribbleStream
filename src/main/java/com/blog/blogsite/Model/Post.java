@@ -36,6 +36,28 @@ public class Post {
     @Column
     private Long views; // Number of views of BlogPost
 
+    @Column
+    private int wordCount; // Number of words in BlogPost
+
+    @Column
+    private String mostUsedWords; // Most used words in BlogPost
+
+    public int getWordCount() {
+        return wordCount;
+    }
+
+    public void setWordCount(int wordCount) {
+        this.wordCount = wordCount;
+    }
+
+    public String getMostUsedWords() {
+        return mostUsedWords;
+    }
+
+    public void setMostUsedWords(String mostUsedWords) {
+        this.mostUsedWords = mostUsedWords;
+    }
+
     // getters and setters
     public Long getId() {
         return id;

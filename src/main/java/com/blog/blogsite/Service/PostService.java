@@ -38,6 +38,9 @@ public class PostService {
         post.setCreatedOn(Instant.now());
         post.setUpdatedOn(Instant.now());
 
+        post.setWordCount(getTotalWords(postRequest.getContent()));
+        post.setMostUsedWords(getMostUsedWords(postRequest.getContent()));
+
         _postRepository.save(post);
 
     }
@@ -108,6 +111,9 @@ public class PostService {
             post.setUpdatedOn(Instant.now());
             post.setViews(postRequest.getViews());
 
+            post.setWordCount(getTotalWords(postRequest.getContent()));
+            post.setMostUsedWords(getMostUsedWords(postRequest.getContent()));
+
             _postRepository.save(post);
         }
     }
@@ -121,5 +127,44 @@ public class PostService {
         if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
             _postRepository.delete(post);
         }
+    }
+
+    // total number of words in a post
+    public int getTotalWords(String content) {
+        return content.split(" ").length; // split into array of strings and return length of array
+    }
+
+    // most used words;
+    public String getMostUsedWords(String content) {
+
+        ArrayList<String> totalWords = new ArrayList<>();
+        content = content.replaceAll("\\p{Punct}", " "); // remove punctuation
+        String[] words = content.split(" "); // split into array of individual words
+
+        for (String word : words) {
+            if (word != null && !word.isEmpty()) {
+                totalWords.add(word);
+            }
+        }
+
+        int count = 0, maxCount = 0;
+        String word = "";
+
+        // Determine the most repeated word in a file
+        for (int i = 0; i < totalWords.size(); i++) {
+            count = 1;
+            //Count each word in the file and store it in variable count
+            for (int j = i + 1; j < totalWords.size(); j++) {
+                if (totalWords.get(i).equals(totalWords.get(j))) {
+                    count++;
+                }
+            }
+            // If maxCount is less than count then store value of count in maxCount and corresponding word to variable word
+            if (count > maxCount) {
+                maxCount = count;
+                word = totalWords.get(i);
+            }
+        }
+        return word;
     }
 }
