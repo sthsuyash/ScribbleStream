@@ -51,7 +51,7 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
     <br/><br/>
 
 - DFD-0 of blog site is shown in the image below.
-  ![DFD-0]()
+  ![DFD-0](src/main/resources/images/DFD-0.jpeg)
   <br/><br/>
 
 - DFD-1 of blog site is shown in the image below.
