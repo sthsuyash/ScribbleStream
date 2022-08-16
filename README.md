@@ -47,14 +47,14 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
 
   - DFD-1 (System DFD):
 
-    In a level 1 data flow diagram, the single process node from the context diagram is broken down into subprocesses. As these processes are added, the diagram will need additional data flows and data stores to link them together.
+   DFD Level 1 provides a more detailed breakout of pieces of the Context Level Diagram. You will highlight the main functions carried out by the system, as you break down the high-level process of the Context Diagram into its subprocesses.
     <br/><br/>
 
 - DFD-0 of blog site is shown in the image below.
   ![DFD-0]()
   <br/><br/>
 
-- DFD-0 of blog site is shown in the image below.
+- DFD-1 of blog site is shown in the image below.
   ![DFD-1]()
   <br/><br/>
 
