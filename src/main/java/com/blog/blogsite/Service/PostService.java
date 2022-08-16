@@ -109,7 +109,6 @@ public class PostService {
             post.setTitle(postRequest.getTitle());
             post.setContent(postRequest.getContent());
             post.setUpdatedOn(Instant.now());
-            post.setViews(postRequest.getViews());
 
             post.setWordCount(getTotalWords(postRequest.getContent()));
             post.setMostUsedWords(getMostUsedWords(postRequest.getContent()));
