@@ -26,13 +26,13 @@ public class PostService {
 
         Post post = new Post();
 
-        post.setTitle(postRequest.getTitle());
-        post.setContent(postRequest.getContent());
-        post.setViews(0L);
-
         User loggedInUser = _authService.getCurrentUser()
                 .orElseThrow(() ->
                         new IllegalArgumentException("No User logged in!"));
+
+        post.setTitle(postRequest.getTitle());
+        post.setContent(postRequest.getContent());
+        post.setViews(0L);
 
         post.setUsername(loggedInUser.getUsername()); // retreive from auth service
         post.setCreatedOn(Instant.now());
