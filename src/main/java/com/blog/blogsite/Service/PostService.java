@@ -93,12 +93,9 @@ public class PostService {
                 .orElseThrow(() ->
                         new PostNotFoundException("No Post found with id: " + id));
 
-        if (post.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
             post.setViews(post.getViews() + 1);
             _postRepository.save(post);
             return mapFromPostToPostRequest(post);
-        }
-        return null;
     }
 
     // update post by id

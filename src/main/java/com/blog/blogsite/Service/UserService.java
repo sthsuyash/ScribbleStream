@@ -45,9 +45,8 @@ public class UserService {
                                     .getUsername())
             ) {
                 User user = new User();
-                user.setUsername(usersInDB.getUsername());
-                user.setEmail(usersInDB.getEmail());
-                user.setId(usersInDB.getId());
+                user = withoutPassword(usersInDB);
+
                 usersToAdd.add(user);
             }
         }
@@ -59,10 +58,10 @@ public class UserService {
         User user = (User) _userRepository.findByUsername(username)
                 .orElseThrow((() -> new ResourceNotFoundException("User not found with username: " + username)));
 
-        if (user.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
-            return user;
-        }
-        return null;
+        User userToAdd = new User();
+        userToAdd = withoutPassword(user);
+
+        return userToAdd;
     }
 
     // get by id
@@ -70,30 +69,37 @@ public class UserService {
         User user = _userRepository.findById(id)
                 .orElseThrow((() -> new ResourceNotFoundException("User not found with id: " + id)));
 
-        if (user.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
-            return user;
-        }
-        return null;
+        User userToSend = new User();
+        userToSend = withoutPassword(user);
+
+        return userToSend;
+    }
+
+    private User withoutPassword(User user) {
+        User userToSend = new User();
+        userToSend.setUsername(user.getUsername());
+        userToSend.setEmail(user.getEmail());
+        userToSend.setId(user.getId());
+
+        return userToSend;
     }
 
     // edit by id
+    // can't edit username
     public ResponseEntity editById(@PathVariable Long id, @RequestBody RegisterRequest userToEdit) {
-
-        // username must not be duplicate
-        Optional<Object> userOptional = _userRepository.findByUsername(userToEdit.getUsername());
 
         User user = _userRepository.findById(id)
                 .orElseThrow((() -> new ResourceNotFoundException("User not found with id: " + id)));
 
-        if (userOptional.isPresent()) {
-            throw new UsernameTakenException("Username taken!!");
-        } else if (user.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
+        if (user.getUsername().equals(_authService.getCurrentUser().get().getUsername())) {
 
             User userToUpdate = new User();
 
             // setting the required contents
+            // not username
+            userToUpdate.setUsername(user.getUsername());
+
             userToUpdate.setId(id);
-            userToUpdate.setUsername(userToEdit.getUsername());
             userToUpdate.setEmail(userToEdit.getEmail());
             userToUpdate.setPassword(_authService.encodePassword(userToEdit.getPassword()));
 
