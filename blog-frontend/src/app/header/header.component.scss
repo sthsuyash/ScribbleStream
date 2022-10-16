@@ -1,0 +1,25 @@
+.header{
+    padding: 20px 0px;
+    background: #251B37;
+}
+
+.title{
+    color:#f0c88b;
+    font-size: 1.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.login, .register{
+    float:right;
+    text-align: center;
+    // padding-top: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color:#251B37;
+    margin:10px;
+    background-color: #f0c88b;
+    border-color: #251B37;
+}
