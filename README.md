@@ -2,7 +2,7 @@
 
 ## Description
 
-A simple web application for blog site created using SpringBoot for backend as Maven project which integrates MySQL for database connection and React.js for frontend.
+A simple web application for blog site created using SpringBoot for backend as Maven project which integrates MySQL for database connection and AngularJS for frontend.
 
 People can create account to add blogs.
 
@@ -63,11 +63,8 @@ A use case diagram doesn't go into a lot of detail—for example, don't expect i
 - Java version 8+
 - SpringBoot 2.2.x
 - MySQL 8.0.18
-- Spring version 5.2.x
-- React version 16.8.x
+- Angular version 14.2.x
 - Node version 10.x
-- NPM version 6.x
-- Git version 2.x
 - [Maven Dependencies](https://github.com/sthsuyash/Blog-Site/blob/main/pom.xml) for _pom.xml_
 
 - Application.properties
